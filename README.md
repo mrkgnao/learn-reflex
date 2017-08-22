@@ -1,6 +1,6 @@
 # (watch me) Learn Reflex!
 
-This will be my notes as I learn [Reflex](https://github.com/reflex-frp/reflex), intended to help other people take the plunge. Reflex is a suite of Haskell libraries and tools that enables a wonderful way to do functional reactive programming, or *FRP*, by applying the declarative nature of Haskell to user interfaces that run efficiently in the browser (with the GHCJS compiler) or as native applications (using GTK).
+These will be my notes as I learn [Reflex](https://github.com/reflex-frp/reflex), intended to help other people take the plunge. Reflex is a suite of Haskell libraries and tools that enables a wonderful way to do functional reactive programming, or *FRP*, by applying the declarative nature of Haskell to user interfaces that run efficiently in the browser (with the GHCJS compiler) or as native applications (using GTK).
 
 At the time I'm beginning to write this, I'm an intermediate-level Haskeller with no previous experience with either FRP or nontrivial JavaScript/web development. Let's see how far I get!
 
