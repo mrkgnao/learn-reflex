@@ -86,15 +86,13 @@ Almost all incarnations of FRP are based on the observation that there are
 
 and games or user interfaces can be described very succinctly (and, as it turns out, efficiently) in terms of these primitive notions. 
 
-Events and behaviors can be manipulated in various ways. Here are some examples:
+Events and behaviors can be manipulated in various ways. For example, one can create an event from a behavior `b` that fires whenever the value of `b` changes.
 
-* One can create an event from a behavior `b` that fires whenever the value of `b` changes.
-
-* One can combine two behaviors `a` and `b` into a new behavior `c` with some "combining function" `f`. The new behavior `c`, at any time, has a value defined to be that obtained by combining the values of `a` and `b` at that time using `f`. This is akin to the following well-known Haskell function:
+Another example is that of combining two behaviors `a` and `b` into a new behavior `c` with some "combining function" `f`. The new behavior `c`, at any time, has a value defined to be that obtained by combining the values of `a` and `b` at that time using `f`. This is akin to the following well-known Haskell function:
 ```haskell
 zipWith :: (a -> b -> c) -> [a] -> [b] -> [c]
 ```
-For example, given behaviors `playerAPoints` and `playerBPoints` corresponding to the scores of players A and B in some game, one might write a function to find if player A is leading, or if the game is tied:
+For example, given behaviors `playerAPoints` and `playerBPoints` corresponding to the scores of players A and B in some game, one might write a function to find if player A is leading, or to find if the game is tied:
 ```haskell
 isPlayerALeading = zipBehaviorsWith (>)  playerAPoints playerBPoints
 isGameTied       = zipBehaviorsWith (==) playerAPoints playerBPoints
