@@ -119,7 +119,7 @@ textInput
      TextInputConfig t -> m (TextInput t)
 ```
 
-Huh, so after being given a `TextInputConfig`, it returns a `TextInput` value in whatever monad we're in. We used `def`: `TextInputConfig` has an instance of the `Default` class, which is roughly of the form
+Huh, so after being given a `TextInputConfig`, it renders a text input to the screen and returns an associated `TextInput` value in whatever monad we're in. We used `def`: `TextInputConfig` has an instance of the `Default` class, which is roughly of the form
 
 ```haskell
 class Default a where
@@ -144,7 +144,7 @@ data TextInput t
         -- Defined in ‘Reflex.Dom.Widget.Input’
 ```
 
-Aha! It seems that a `TextInput` wraps a bunch of those cool FRP things I was talking about. In particular, we have `Event`s corresponding to key events, and a `Dynamic` value corresponding to what's in the text box. And this type is a plain record, so the use of `_textInput_value` was just to get at this `Dynamic`, which happens to have a `Text` value at each instant. 
+Aha! It seems that a `TextInput` wraps a bunch of those cool FRP things I was talking about. In particular, we have `Event`s corresponding to key events on the input field, and a `Dynamic` value corresponding to what's in it. And this type is a plain record, so the use of `_textInput_value` was just to get at this `Dynamic`, which happens to have a `Text` value at each instant. 
 
 The next piece of the puzzle is the `mconcat`. It seems `Dynamic t a` has a `Monoid` instance if `a` does, which should make sense if you recall our discussion of "zipping" behaviors together from above. At any instant, given a list (or, rather, any `Foldable`) of `Dynamic`s, we can make a new one whose value at any instant is given by `mconcat`-ing the values of the elements of the list at that instant.
 
@@ -170,6 +170,17 @@ dynText
 ```
 
 This takes a dynamic `Text` value and just displays it to the screen as a label, which happens to be the last piece of the puzzle!
+
+You may have noticed that the type of `constDyn` is a specialization of `pure`:
+
+```haskell
+constDyn ::                    a -> Dynamic t a
+pure     :: (Applicative f) => a ->         f a
+```
+
+In fact, `Dynamic t` is an `Applicative` and `constDyn` is its `pure` function!
+
+*Exercise*. Replace `constDyn` with `pure` in the original code listing and compile it again. Verify that nothing breaks.
 
 ## A note about type signatures
 
