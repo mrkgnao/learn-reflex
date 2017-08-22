@@ -102,7 +102,7 @@ isGameTied       = zipBehaviorsWith (==) playerAPoints playerBPoints
 
 ## A note about type signatures
 
-The ugly type signature on `ui` can be inferred, but only if you turn off GHC's `-XNoMonomorphismRestriction` flag, which is enabled by default and prevents GHC from inferring polymorphic signatures for top-level bindings (hence a *monomorphism restriction*, one which forbids *polymorphism*). This means that a binding such as `x = 1` at the top level of a Haskell file will, by default, be inferred to have the type `x :: Int`, instead of `x :: Num a => a`.
+The ugly type signature on `ui` can be inferred, but only if you turn off GHC's `-XMonomorphismRestriction` flag, which is enabled by default and prevents GHC from inferring polymorphic signatures for top-level bindings (hence a *monomorphism restriction*, one which forbids *polymorphism*). This means that a binding such as `x = 1` at the top level of a Haskell file will, by default, be inferred to have the type `x :: Int`, instead of `x :: Num a => a`.
 
 To do so, we add a language pragma at the top of the file that turns that flag off. With that in place, the code compiles fine without the type signature:
 
