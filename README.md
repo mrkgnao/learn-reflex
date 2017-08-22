@@ -24,8 +24,6 @@ ui = do
   dynText name
 ```
 
-
-
 ```haskell
 
 {-# LANGUAGE OverloadedStrings #-}
