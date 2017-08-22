@@ -45,7 +45,7 @@ import Reflex
 import Reflex.Dom
 
 main :: IO ()
-main = mainWidget $ el "div" ui
+main = mainWidget (el "div" ui)
 
 ui :: (DomBuilderSpace m ~ GhcjsDomSpace, DomBuilder t m, PostBuild t m) => m ()
 ui = do
