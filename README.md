@@ -70,6 +70,8 @@ Linking greetings.jsexe (Main)
 
 GHCJS compiles the Haskell code to a JavaScript file. It also creates an `index.html` file that loads the generated JavaScript: open `greetings.jsexe/index.html` in a browser!
 
+![greetings.hs screenshot](https://raw.githubusercontent.com/mrkgnao/learn-reflex/master/greetings.png)
+
 ## A note about type signatures
 
 The ugly type signature on `ui` can be inferred, but only if you turn off GHC's `-XNoMonomorphismRestriction` flag, which is enabled by default and prevents GHC from inferring polymorphic signatures for top-level bindings (hence a *monomorphism restriction*, one which forbids *polymorphism*). This means that a binding such as `x = 1` at the top level of a Haskell file will, by default, be inferred to have the type `x :: Int`, instead of `x :: Num a => a`.
