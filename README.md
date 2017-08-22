@@ -76,7 +76,7 @@ GHCJS compiles the Haskell code to a JavaScript file. It also creates an `index.
 
 There's ... still a lot of work to do design-wise, but let's first try to understand the big chunk of code you just pasted into some editor and built.
 
-# The stuff that functional reactive programming is made of
+# The stuff that FRP is made of
 
 There are many implementations of FRP, but all of them are based on the observation that applications that react to user input (*reactive* applications) can be broken into interacting pieces that fall into one of the following two categories:
 
@@ -86,7 +86,7 @@ There are many implementations of FRP, but all of them are based on the observat
 
 and games or user interfaces can be described very succinctly (and, as it turns out, efficiently) in terms of these primitive notions, and by specifying how they depend on each other.
 
-FRP, then, is the practice of specifying these dependencies *declaratively*, instead of writing code that explicitly waits for changes and modifies something in response to the change. For example, one can create an event from a behavior `b` that fires whenever the value of `b` changes.
+*Functional* reactive programming, then, is the practice of specifying these dependencies *declaratively*, instead of writing code that explicitly waits for changes and modifies something in response to the change. For example, one can create an event from a behavior `b` that fires whenever the value of `b` changes.
 
 Another example is that of combining two behaviors `a` and `b` into a new behavior `c` with some "combining function" `f`. The new behavior `c`, at any time, has a value defined to be that obtained by combining the values of `a` and `b` at that time using `f`. This is akin to the following well-known Haskell function:
 ```haskell
