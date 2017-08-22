@@ -1,12 +1,14 @@
 # Learn Reflex!
 
-This will be my notes as I learn [Reflex](https://github.com/reflex-frp/reflex), intended to help other people take the plunge too. 
+This will be my notes as I learn [Reflex](https://github.com/reflex-frp/reflex), intended to help other people take the plunge. Reflex is a suite of Haskell libraries and tools that enables a wonderful way to do functional reactive programming, or *FRP*, by applying the declarative nature of Haskell to user interfaces that run efficiently in the browser (with the GHCJS compiler) or as native applications (using GTK).
 
-First, if you haven't, install the [Reflex Platform](https://github.com/reflex-frp/reflex-platform/). 
+At the time I'm beginning to write this, I'm an intermediate-level Haskeller with no previous experience with either FRP or nontrivial JavaScript/web development. Let's see how far I get!
 
 # Setting things up
 
-Let's enter a Nix shell with access to all the things we'll need. From the `reflex-platform` directory, type
+First, if you haven't, install the [Reflex Platform](https://github.com/reflex-frp/reflex-platform/). Let's enter a Nix shell with access to all the things we'll need. 
+
+From the `reflex-platform` directory, type
 
 ```
 $ ./try-reflex
@@ -71,6 +73,27 @@ Linking greetings.jsexe (Main)
 GHCJS compiles the Haskell code to a JavaScript file. It also creates an `index.html` file that loads the generated JavaScript: open `greetings.jsexe/index.html` in a browser!
 
 ![greetings.hs screenshot](https://raw.githubusercontent.com/mrkgnao/learn-reflex/master/greetings.png)
+
+There's ... still a lot of work to do design-wise, but let's first try to understand the big chunk of code you just pasted into some editor and built.
+
+# The stuff that functional reactive programming is made of
+
+Almost all incarnations of FRP are based on the observation that there are 
+
+* *events* that fire once in a while: keypresses, doors opening, changes in device orientation
+
+* *behaviors* or variables that always have some possibly changing value: mouse position, the current time, health points
+
+and games or user interfaces can be described very succinctly (and, as it turns out, efficiently) in terms of these primitive notions. 
+
+Events and behaviors can be manipulated in various ways. Here are some examples:
+
+* One can create an event from a behavior `b` that fires whenever the value of `b` changes.
+
+* One can combine two behaviors `a` and `b` into a new behavior `c` with some "combining function" `f`. The new behavior `c`, at any time, has a value defined to be that obtained by combining the values of `a` and `b` at that time using `f`. This is akin to the following well-known Haskell function:
+```
+zipWith :: (a -> b -> c) -> [a] -> [b] -> [c]
+```
 
 ## A note about type signatures
 
